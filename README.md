@@ -1,6 +1,23 @@
 # MeetingMinutes
 
-## 20210727 Discussion
+## 2021/07/23 分工
+ - Front-end Instructions: [TSMC Design System](https://markdownlivepreview.com/)
+ - 希望大家都能寫到code, 暫時先前後各３人, 再動態調整
+ - 前端: 彥存/有璿/紹寧 (Vue.js)
+ - 後端: 書文/銘仁/盛暉 (Python Flask + MairaDB)
+
+
+## 2021/07/26 Mentor 碎碎念ＱＱ
+- 在設計schema的階段, 可以用一些[免費的工具](https://markdownlivepreview.com/)畫ER Model 幫助思考,後續做ppt時也可以放
+- DB的部分
+ 1. 可以照之前說的, 先用json當假資料, 等確定後端API可以正確的回傳資料給前端, 再串接DB
+ 2. 後續嘗試架一套[MariaDB](https://mariadb.org/), 最近公司在導入它取代Oracle, 參考[這篇](https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb/)
+ 3. AWS有MariaDB的service, 若後續有時間, 也可以改用AWS的服務,應該會是個不錯的經驗, 參考[這篇](https://aws.amazon.com/tw/getting-started/hands-on/create-mariadb-db/)
+- 程式碼本身是最好的comment, 寫出可讀性高的程式, 比寫一堆comment更重要(Ex: 變數/方法的命名不要亂取), 但複雜的地方仍可以用comment輔助說明
+- git依照不同的功能切feature branch進行開發, 該功能開發完畢後, 要開PR (Pull request) 回develop branch<br>希望大家盡可能都去看PR, 有建議或疑問都可以在PR上留言討論, 互相學習, git的概念可以參考[這篇](https://gitbook.tw/chapters/gitflow/why-need-git-flow.html)
+-(如果有時間)希望能實作自動化測試的部分
+
+## 2021/07/27 Discussion
 ```
 1.   User story：
      
@@ -28,3 +45,25 @@
      e. 回傳各廠區施打比例資料
 ```
 
+## 2021/07/28 Mentor suggestion
+
+- 前端跟後端各開一個github repo
+- 登入跟後續每一發request的身份驗證這個可以先做, 註冊等其他主功能告一段落後再開始進行
+- 簡單的身份驗證做法：
+    1. 前端將帳號＆加密過的密碼傳給後端, 後端跟DB內的資料比對(DB直接存密文）
+    2. 如果帳號密碼對了, 後端使用based64 encode一個token給前端, 設在cookie上
+    3. 後續的操作, 前端都要帶這個cookie(token)給後端, 身份驗證 
+
+## 2021/07/31 進度update
+- 前端
+```
+本週嘗試與後端串接
+新增其他功能頁面
+```
+- 後端
+```
+下禮拜一晚上9點前完成以下：
+盛輝: 會用flask-sqlalchemy連結mariadb，做出四張table，讓後端可以使用
+銘仁: 做出登記預約的function
+書文: 登入驗證，研究UserSchema和session的使用邏輯
+```
