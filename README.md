@@ -1,14 +1,14 @@
 # MeetingMinutes
 
 ## 2021/07/23 分工
- - Front-end Instructions: [TSMC Design System](https://markdownlivepreview.com/)
+ - Front-end Instructions: [TSMC Design System](https://zeroheight.com/5e50b6e36/p/957ef9-instructions)
  - 希望大家都能寫到code, 暫時先前後各３人, 再動態調整
  - 前端: 彥存/有璿/紹寧 (Vue.js)
  - 後端: 書文/銘仁/盛暉 (Python Flask + MairaDB)
 
 
 ## 2021/07/26 Mentor 碎碎念ＱＱ
-- 在設計schema的階段, 可以用一些[免費的工具](https://markdownlivepreview.com/)畫ER Model 幫助思考,後續做ppt時也可以放
+- 在設計schema的階段, 可以用一些[免費的工具](https://online.visual-paradigm.com/tw/diagrams/solutions/free-erd-tool/)畫ER Model 幫助思考,後續做ppt時也可以放
 - DB的部分
  1. 可以照之前說的, 先用json當假資料, 等確定後端API可以正確的回傳資料給前端, 再串接DB
  2. 後續嘗試架一套[MariaDB](https://mariadb.org/), 最近公司在導入它取代Oracle, 參考[這篇](https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb/)
