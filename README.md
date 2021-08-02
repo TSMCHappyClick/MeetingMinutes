@@ -17,8 +17,15 @@
 - git依照不同的功能切feature branch進行開發, 該功能開發完畢後, 要開PR (Pull request) 回develop branch<br>希望大家盡可能都去看PR, 有建議或疑問都可以在PR上留言討論, 互相學習, git的概念可以參考[這篇](https://gitbook.tw/chapters/gitflow/why-need-git-flow.html)
 -(如果有時間)希望能實作自動化測試的部分
 
-## 2021/07/27 Discussion
+## 2021/07/26 進度update
+- 前端
 ```
+以Nodejs跟bootstrapVue建立網站初版
+新增登入頁面，註冊頁面，預約疫苗頁面（有璿）
+```
+
+## 2021/07/27 Discussion
+
 1.   User story：
      
      For 員工：
@@ -43,7 +50,7 @@
      c. 預約時，將使用者預約資訊儲存到DB
      d. 查看預約資訊時，前端丟出使用著工號，後端回傳已儲存之預約資訊
      e. 回傳各廠區施打比例資料
-```
+
 
 ## 2021/07/28 Mentor suggestion
 
@@ -57,6 +64,7 @@
 ## 2021/07/31 進度update
 - 前端
 ```
+修改router.js會先將網頁導向login頁面，並新增加密功能於Login.vue（有璿）
 本週嘗試與後端串接
 新增其他功能頁面
 ```
@@ -66,4 +74,14 @@
 盛輝: 會用flask-sqlalchemy連結mariadb，做出四張table，讓後端可以使用
 銘仁: 做出登記預約的function
 書文: 登入驗證，研究UserSchema和session的使用邏輯
+
+## 2021/08/02 進度update
+- 前端
+```
+登入API串接完成（有璿）
+新增：
+1. 查看預約資訊頁面（彥存）
+2. 圖表統計頁面（彥存初版 紹寧修）
+3. 健康中心標記施打完成頁面（紹寧）
+4. 左側各網頁欄位修改（紹寧）
 ```
