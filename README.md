@@ -74,8 +74,10 @@
 盛輝: 會用flask-sqlalchemy連結mariadb，做出四張table，讓後端可以使用
 銘仁: 做出登記預約的function
 書文: 登入驗證，研究UserSchema和session的使用邏輯
+```
 
 ## 2021/08/02 進度update
+
 - 前端
 ```
 登入API串接完成（有璿）
