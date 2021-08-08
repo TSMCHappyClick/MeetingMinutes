@@ -170,3 +170,9 @@ app.config.update(
     SESSION_COOKIE_SAMESITE='None',
 )
 ```
+
+- Reference:
+  <br/>
+  [Cors and Samesite](https://medium.com/d-d-mag/%E5%92%8C-cors-%E8%B7%9F-cookie-%E6%89%93%E4%BA%A4%E9%81%93-dd420ccc7399)
+  <br/>
+  [Flase set cookie](https://flask.palletsprojects.com/en/2.0.x/security/#set-cookie-options)
