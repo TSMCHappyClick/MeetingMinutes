@@ -132,12 +132,16 @@
 3. 但前端跟後端串接發現, 即使login過, 後續的request打過去, 均被視為未登入
 ```
 
+![image](https://github.com/TSMCHappyClick/MeetingMinutes/blob/main/images/request-header.png)
+
 - 為什麼使用postman時正常, 但前端串接會失敗:
 ```
 1. call login api時, response header會多一個set-cookie, session=xxx
 2. 使用postman時, 這個cookie會自動被更新至request header, 因此下一發request會帶上此cookie
 3. cookie不允許跨domain access, 前端的domain與後端不同, 所以set-cookie失敗
 ```
+
+![image](https://github.com/TSMCHappyClick/MeetingMinutes/blob/main/images/response-set-header.png)
 
 - How to fix? (frontend) 
 ```
