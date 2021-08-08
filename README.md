@@ -41,7 +41,6 @@
      For 健康中心or施打人員：
      * 當為某員工施打成功後，我希望能登記回報他的施打資訊
      
-     
 2.   前後端功能討論：
 
      API需求：(目標先完成員工的基本功能)
@@ -124,4 +123,46 @@
 修改健康中心頁面（紹寧）
 儲存userId跟identity於localStorage 且偵測到localStorage被修改時會自動改回原本的data(避免用其他人的id偷看資料)(有璿)
 隱藏側欄health center連結(之後再處理讓他連擁有健康中心網址也進不去)(有璿)
+```
+## 2021/08/08 login issue explanation by mentor
+- Problem background:
+```
+1. 後端使用flask-login套件做登入狀態管理
+2. 後端已用postman測試過, 先call login API再call其他加上@login_required的API, 可以正確卡關
+3. 但前端跟後端串接發現, 即使login過, 後續的request打過去, 均被視為未登入
+```
+
+- 為什麼使用postman時正常, 但前端串接會失敗:
+```
+1. call login api時, response header會多一個set-cookie, session=xxx
+2. 使用postman時, 這個cookie會自動被更新至request header, 因此下一發request會帶上此cookie
+3. cookie不允許跨domain access, 前端的domain與後端不同, 所以set-cookie失敗
+```
+
+- How to fix? (frontend) 
+```
+1. 將AP也deploy至heroku, 這樣就會與後端擁有相同domain (*.herokuapp.com)
+    1.1. 刪除package-lock.json ＆ yarn.lock
+    1.2. 加上static.json (內容跟官網sample一樣即可)
+    1.3. vue.config.js加上outputDir: 'dist/HappyClick/'
+2. 在main.js加上 => axios.defaults.withCredentials = true
+```
+- How to fix? I  (backend)
+
+```
+1. after_request加上, 解決cors site的問題
+response.headers.add('Access-Control-Allow-Origin', 'https://happy-click-gui.herokuapp.com')
+response.headers.add('Access-Control-Allow-Headers',
+                     'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Origin, Accept, '
+                     'X-Requested-With, Content-Type, '
+                     'Access-Control-Request-Method, Access-Control-Request-Headers')
+response.headers.add('Access-Control-Allow-Credentials', 'true')
+response.headers.add('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
+
+2. 更改ap config, 解決samesite問題
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='None',
+)
 ```
