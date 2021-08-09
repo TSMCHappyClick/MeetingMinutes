@@ -124,6 +124,23 @@
 儲存userId跟identity於localStorage 且偵測到localStorage被修改時會自動改回原本的data(避免用其他人的id偷看資料)(有璿)
 隱藏側欄health center連結(之後再處理讓他連擁有健康中心網址也進不去)(有璿)
 ```
+## 2021/08/07 Mentor 碎碎念
+```
+後端API URL naming需改善
+不會是/Login or /SaveReserve 這種直接大寫開頭的取法
+可以參考下方reference
+- Login => /empl/login (POST)
+- CheckReserve => /reserve?empl=xxx (GET)
+- SaveReserve => /saveReserve (POST) => 更好的方式 /reserve (POST)
+- Remove => /removeReserve (POST) => 更好的方式 /reserve (DELETE)
+- UpdateVaccinated => /updateReserve (POST) => 更好的方式 /reserve (PUT)
+- ReturnAvailable => /vacc/available (GET)
+```
+Reference:
+[Best Practices for Naming REST API Endpoints](https://blog.dreamfactory.com/best-practices-for-naming-rest-api-endpoints/)
+[REST Resource Naming Guide](https://restfulapi.net/resource-naming/)
+[RESTFUL URL命名原則](https://blog.csdn.net/belalds/article/details/80060296)
+
 ## 2021/08/08 login issue explanation by mentor
 - Problem background:
 ```
@@ -151,10 +168,10 @@
     1.3. vue.config.js加上outputDir: 'dist/HappyClick/'
 2. 在main.js加上 => axios.defaults.withCredentials = true
 ```
-- How to fix? I  (backend)
+- How to fix?  (backend)
 
 ```
-1. after_request加上, 解決cors site的問題
+1. after_request加上, 解決cors site的問題 (Origin建議從request header拿The)
 response.headers.add('Access-Control-Allow-Origin', 'https://happy-click-gui.herokuapp.com')
 response.headers.add('Access-Control-Allow-Headers',
                      'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Origin, Accept, '
@@ -176,3 +193,24 @@ app.config.update(
   [Cors and Samesite](https://medium.com/d-d-mag/%E5%92%8C-cors-%E8%B7%9F-cookie-%E6%89%93%E4%BA%A4%E9%81%93-dd420ccc7399)
   <br/>
   [Flase set cookie](https://flask.palletsprojects.com/en/2.0.x/security/#set-cookie-options)
+  
+## 2021/08/08 待處理事項
+1. find_fac_shot_rate blocked by CORS policy - 待前後端整合
+2. find_employees_under_staff Internal Server Error - 書文
+3. icon消失 - 紹寧
+4. 右上角username消失 - 有璿
+5. 圖表最上面格式錯誤 - 有璿
+6. 後端登入API將判斷是否為醫療人員抽成function去call - 書文
+7. 登入失敗不要也回傳http 200 - 書文
+8. 前後端整合並deploy至heroku - 書文/盛暉
+9. test case - all
+
+## 2021/08/09 待處理事項
+1. test case - all
+2. 後端enable logger - 書文/銘仁
+3. 後端find_fac_shot_rate performance tuning - 盛暉
+4. 前後端整合並deploy至heroku - 書文/盛暉
+5. 無預約時, 確認頁面的疫苗種類跟日期, 一開始會出現None - 有璿
+6. 新增疫苗需有防呆機制, 不允許新增過去時間的可施打疫苗 - 盛暉
+7. cook預約記錄資料至mongodb - 銘仁
+8. (optional) ui enable dark mode 
